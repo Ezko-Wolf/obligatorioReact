@@ -24,13 +24,19 @@ class Login extends Component {
     } else {
       login({ userName, pass })
         .then(usr => {
-          this.props.handleLogin(usr);
-        });
+          if(!usr){
+            alert('Usuario o contraseña incorrecto.');
+          }else if(usr === -1){
+            alert('Servicio no disponible momentaneamente.');
+          }else{
+            this.props.handleLogin(usr);
+          }          
+        }
+      );      
     }
   };
 
   handleChange = e => {
-    console.info(e);
     if(e.target.id == 'userName'){
       this.setState({
         userName: e.target.value
