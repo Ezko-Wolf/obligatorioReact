@@ -13,7 +13,7 @@ class Registro extends Component {
               <label htmlFor="inputPass">Ingrese su contraseña</label>
               <br />
               <input type="password" name="pass" id="inputPass"/>
-              <br /> <br />
+              <br />
               <label htmlFor="inputPassRepit">Repita su contraseña</label>
               <br />
               <input type="password" name="passRepit" id="inputPassRepit"/>

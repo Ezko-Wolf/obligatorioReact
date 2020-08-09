@@ -1,0 +1,42 @@
+*******************************************************************************************************
+*                                                                                                     *
+*   Planificación de nuestra interfaz para definir pantallas/componentes acorde a jerarquía.     ▀    *
+*   Pantalla de login (utilizando la api)                                                             *
+*   Pantalla de registro (utilizando la api)                                                          *
+*   Pantalla de dashboard (pueden utilizar un mock de la api)                                         *
+*                                                                                                     *
+*******************************************************************************************************
+
+
+http://xpense.develotion.com/usuarios.php : 
+
+Envio
+{
+    "usuario": "Gaston24",
+    "password":"tongas"
+}
+
+Responde
+{
+    "codigo": 200,
+    "apiKey": "9f4251b00f6905fc25f4fecce0cc68b3",
+    "id": "77"
+}
+
+--------------------------------------------------------------------------------------------------------
+http://xpense.develotion.com/login.php
+
+Envio
+{
+    "usuario":"Gaston24",
+    "password":"tongas"
+}
+
+Responde
+{
+    "usuario": "Gaston24",
+    "password": "tongas",
+    "codigo": 200,
+    "apiKey": "9f4251b00f6905fc25f4fecce0cc68b3",
+    "id": "77"
+}
