@@ -39,12 +39,12 @@ class App extends Component {
   };
 
   render() {
-    const {userData} = this.state
+    const {userData} = this.state;
     return (
       <div className="App">
-        <Header />
+        <Header userName = { userData && userData.usuario ? userData.usuario : ''}/>
         <main>
-          {/* <Registro/> */}
+          <Registro/>
           <br/><br/><br/>
           {userData === null ? <Login handleLogin={this.handleLogin}/> : <Dashboard/>}
         </main>

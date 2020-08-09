@@ -19,7 +19,7 @@ class Header extends Component{
                 <img src={logo} width="30" height="30" className="d-inline-block align-top" loading="lazy" />
                 Control Gastos
             </a>
-            <UserLogOut/>
+            {this.props.userName ? <UserLogOut userName = {this.props.userName}/> : ''}            
             </nav>
             </header>
         );

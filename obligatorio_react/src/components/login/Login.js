@@ -17,7 +17,6 @@ class Login extends Component {
   handleSend = e => {
     e.preventDefault();
     const { userName, pass } = this.state;
-    console.info(e);
 
     if (userName === null || userName === "" || pass === null || pass === "") {
       alert("Debes completar los campos");

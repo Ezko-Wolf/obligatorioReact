@@ -18,4 +18,24 @@ const login = userData => {
     
 };
 
-export {login};
+const registro = userData => {
+
+    let data = {
+        "usuario": userData.userName,
+        "password": userData.pass
+    };
+
+    return fetch('http://xpense.develotion.com/usuarios.php',{
+    method : 'POST',
+    body: JSON.stringify(data),
+    headers:{
+        'Content-Type': 'application/json'
+    }}).then(res => res.status === 200 ? res.json() : res.status)
+    .catch(error => {
+        console.error(error);
+        return -1;
+    });
+    
+};
+
+export {login, registro};

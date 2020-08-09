@@ -1,8 +1,8 @@
 *******************************************************************************************************
 *                                                                                                     *
 *   Planificación de nuestra interfaz para definir pantallas/componentes acorde a jerarquía.     ▀    *
-*   Pantalla de login (utilizando la api)                                                             *
-*   Pantalla de registro (utilizando la api)                                                          *
+*   Pantalla de login (utilizando la api)                                                        ▀    *
+*   Pantalla de registro (utilizando la api)                                                     ▀    *
 *   Pantalla de dashboard (pueden utilizar un mock de la api)                                         *
 *                                                                                                     *
 *******************************************************************************************************
