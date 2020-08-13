@@ -12,13 +12,22 @@ class Dashboard extends Component {
   
   render() {
     return (
-      <div>
-        <h1>Hola soy un dash</h1>
-        <AltaGasto/>
-        <ListadoGastos/>
-        <Reportes/>
-      </div>
-     
+      <div className="card text-center">
+        <div className="card-body">
+          <div className= "card">
+            <div clss="card-body">                
+              <AltaGasto/>
+            </div>
+            <div clss="card-body">  
+              <h6>cositas</h6>        
+              <ListadoGastos/>
+            </div>
+          </div>          
+        </div>        
+        <div className="card-footer">
+          <Reportes/>
+        </div>
+      </div>     
     );
   }
 }

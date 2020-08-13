@@ -10,10 +10,12 @@ class ListadoGastos extends Component {
   
   render() {
     return (
-      <Fragment>
-        <h1>Soy el listado y tengo varios </h1>
+      <div className="card" style={{border : 'solid' }}>        
         <ItemGasto/>
-      </Fragment>
+        <ItemGasto/>
+        <ItemGasto/>
+        <ItemGasto/>
+      </div>
      
     );
   }
