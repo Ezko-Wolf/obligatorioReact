@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import './App.css';
+import 'bootstrap-css-only';
 import Header from './components/header';
 import Login from './components/login';
 import Dashboard from './components/dashboard';
 import Registro from './components/registro';
-import './App.css';
-import 'bootstrap-css-only';
+import { registro, login } from './services/Api';
 
 class App extends Component {
   constructor (props){
@@ -41,14 +43,22 @@ class App extends Component {
   render() {
     const {userData} = this.state;
     return (
-      <div className="App">
-        <Header userName = { userData && userData.usuario ? userData.usuario : ''}/>
-        <main>
-          <Registro/>
-          <br/><br/><br/>
-          {userData === null ? <Login handleLogin={this.handleLogin}/> : <Dashboard/>}
-        </main>
-      </div>
+      <Router>
+        <div className="App">
+          <Header userName = { userData && userData.usuario ? userData.usuario : ''}/>
+          <main>
+            <Route exact path='/' render = { (props) => {
+                return <Login handleLogin={this.handleLogin} {...props}/>
+              } }/>
+            <Route path='/registro' component = {Registro}/>
+            <Route path='/dashboard' component = {Dashboard}/>
+            {/* <Registro/>
+            <br/><br/><br/>
+            {userData === null ? <Login handleLogin={this.handleLogin}/> : <Dashboard/>} */}
+          </main>
+       </div>
+      </Router>
+      
     );
   }
 }

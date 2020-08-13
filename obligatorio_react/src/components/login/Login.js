@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {login} from '../../services/Api';
 import 'bootstrap-css-only';
+import {Link} from 'react-router-dom';
 
 
 const styles = { width: "22em", margin: "0 auto", marginTop: 10 }
@@ -27,8 +28,9 @@ class Login extends Component {
             alert('Usuario o contraseña incorrecto.');
           }else if(usr === -1){
             alert('Servicio no disponible momentaneamente.');
-          }else{
+          }else{            
             this.props.handleLogin(usr);
+            this.props.history.replace('/dashboard');
           }          
         }
       );      
@@ -61,7 +63,8 @@ class Login extends Component {
             <label htmlFor="inputPass">Ingrese su contraseña</label>
             <br />
             <input type="password" name="pass" id="inputPass" value = {pass} onChange = {this.handleChange} className="form-control"/>
-            <br />    
+            <br />
+            <Link to='/registro' >Registro</Link>
             <button className="btn btn-primary" onClick={this.handleSend}>Ingresar</button>
           </form>
         </section>
