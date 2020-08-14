@@ -1,3 +1,5 @@
+const URI = 'http://xpense.develotion.com';
+
 const login = userData => {
 
     let data = {
@@ -5,7 +7,7 @@ const login = userData => {
         "password": userData.pass
     };
 
-    return fetch('http://xpense.develotion.com/login.php',{
+    return fetch(`${URI}/login.php`,{
     method : 'POST',
     body: JSON.stringify(data),
     headers:{
@@ -25,12 +27,12 @@ const registro = userData => {
         "password": userData.pass
     };
 
-    return fetch('http://xpense.develotion.com/usuarios.php',{
+    return fetch(`${URI}/usuarios.php`,{
     method : 'POST',
     body: JSON.stringify(data),
     headers:{
         'Content-Type': 'application/json'
-    }}).then(res => res.status === 200 ? res.json() : res.status)
+    }}).then(res => res.status === 200 ? res.json() : null)
     .catch(error => {
         console.error(error);
         return -1;
@@ -38,4 +40,42 @@ const registro = userData => {
     
 };
 
-export {login, registro};
+const obtenerRubros = user => {    
+    return fetch(`${URI}/rubros.php`,{
+    method : 'GET',
+    headers:{
+        'Content-Type': 'application/json',
+        'apikey' : user.apiKey
+    }}).then(res => res.status === 200 ? res.json() : null)
+    .catch(error => {
+        console.error(error);
+        return -1;
+    });    
+};
+
+const altaGasto = (dataGasto, user) => {
+
+    console.info(dataGasto);
+    console.info(user);
+    let data = {
+        "nombre":dataGasto.nombre,
+        "monto": dataGasto.monto,
+        "idUsuario": user.id,
+        "idRubro": dataGasto.idRubro
+    };
+
+    return fetch(`${URI}/gastos.php`,{
+    method : 'POST',
+    body: JSON.stringify(data),
+    headers:{
+        'Content-Type': 'application/json',
+        'apikey' : user.apiKey
+    }}).then(res => res.status === 200 ? res.json() : null)
+    .catch(error => {
+        console.error(error);
+        return -1;
+    });
+    
+}
+
+export {login, registro, obtenerRubros, altaGasto};

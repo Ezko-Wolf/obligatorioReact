@@ -8,11 +8,11 @@ class Reportes extends Component{
     render(){
         return (
             <div className='card' style={{border : 'solid' }}>
-                <nav class="navbar navbar-light bg-light ">
-                    <form class="form-inline">
-                        <button class="btn btn-outline-success" type="button">Reporte General</button>
-                        <button class="btn btn-outline-success" type="button">Gastos por Rubro</button>
-                        <button class="btn btn-outline-success" type="button">Compras por Rubro</button>
+                <nav className="navbar navbar-light bg-light ">
+                    <form className="form-inline">
+                        <button className="btn btn-outline-success" type="button">Reporte General</button>
+                        <button className="btn btn-outline-success" type="button">Gastos por Rubro</button>
+                        <button className="btn btn-outline-success" type="button">Compras por Rubro</button>
                     </form>
                 </nav>     
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {login} from '../../services/Api';
 import 'bootstrap-css-only';
+import {login} from '../../services/Api';
 import {Link} from 'react-router-dom';
 
 
