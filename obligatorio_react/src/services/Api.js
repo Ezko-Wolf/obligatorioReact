@@ -54,9 +54,6 @@ const obtenerRubros = user => {
 };
 
 const altaGasto = (dataGasto, user) => {
-
-    console.info(dataGasto);
-    console.info(user);
     let data = {
         "nombre":dataGasto.nombre,
         "monto": dataGasto.monto,
@@ -78,4 +75,19 @@ const altaGasto = (dataGasto, user) => {
     
 }
 
-export {login, registro, obtenerRubros, altaGasto};
+const obtenerGastos = user => {
+
+    return fetch(`${URI}/gastos.php?id=${user.id}`,{
+    method : 'GET',
+    headers:{
+        'Content-Type': 'application/json',
+        'apikey' : user.apiKey
+    }}).then(res => res.status === 200 ? res.json() : null)
+    .catch(error => {
+        console.error(error);
+        return -1;
+    });
+    
+}
+
+export {login, registro, obtenerRubros, altaGasto, obtenerGastos};
