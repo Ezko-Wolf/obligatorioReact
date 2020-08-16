@@ -63,6 +63,7 @@ class AltaGasto extends Component{
                     alert('Servicio no disponible momentaneamente.');
                 }else{          
                     alert(`${result.mensaje} codigo: ${result.idGasto}`);
+                    this.props.actualizarGastos();
                 }   
             });
         }        

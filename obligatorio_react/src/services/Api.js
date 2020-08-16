@@ -1,4 +1,4 @@
-const URI = 'http://xpense.develotion.com';
+const URI = 'https://xpense.develotion.com';
 
 const login = userData => {
 
@@ -86,8 +86,25 @@ const obtenerGastos = user => {
     .catch(error => {
         console.error(error);
         return -1;
-    });
-    
+    });    
 }
 
-export {login, registro, obtenerRubros, altaGasto, obtenerGastos};
+const bajaGasto = (user, idGasto) => {
+    let data = {
+        "idGasto":idGasto
+    };
+
+    return fetch(`${URI}/gastos.php`,{
+    method : 'DELETE',
+    body : JSON.stringify(data),
+    headers:{
+        'Content-Type': 'application/json',
+        'apikey' : user.apiKey
+    }}).then(res => res.status === 200 ? res.json() : null)
+    .catch(error => {
+        console.info(error);
+        return -1;
+    });    
+}
+
+export {login, registro, obtenerRubros, altaGasto, obtenerGastos, bajaGasto};

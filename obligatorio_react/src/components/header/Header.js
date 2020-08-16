@@ -15,7 +15,7 @@ class Header extends Component{
 
             <header className="App-header">
             <nav className="navbar navbar-dark bg-dark" style={styles}>
-            <a class="navbar-brand" href="#">
+            <a className="navbar-brand" href="#">
                 <img src={logo} width="30" height="30" className="d-inline-block align-top" loading="lazy" />
                 Control Gastos
             </a>
