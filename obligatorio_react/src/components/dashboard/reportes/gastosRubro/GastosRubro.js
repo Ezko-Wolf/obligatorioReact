@@ -9,10 +9,6 @@ class GastosRubro extends Component{
         this.processData = this.processData.bind(this);
         this.buildItems = this.buildItems.bind(this); 
     }
-    /**
-     * Se listarán todos los rubros en los que el usuario haya hecho gastos y el importe total acumulado de cada rubro.
-     * autos 5mil
-     */
 
     buildItems(rubros, totales){
         return totales.map( e => {

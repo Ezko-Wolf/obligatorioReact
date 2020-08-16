@@ -74,7 +74,7 @@ class Reportes extends Component{
                     </form>
                 </nav>     
 
-                <General/>
+                <General gastos={gastos}/>
                 <GastosRubro gastos={gastos} rubros={rubros}/>
                 <ComprasRubro gastos={gastos} rubros={rubros}/>          
             </div>

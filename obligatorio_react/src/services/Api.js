@@ -40,10 +40,12 @@ const registro = userData => {
     
 };
 
-const obtenerRubros = user => {    
+const obtenerRubros = user => { 
+    console.info('llamo al get');   
     return fetch(`${URI}/rubros.php`,{
     method : 'GET',
     headers:{
+        'Cache-control': 'no-cache',
         'Content-Type': 'application/json',
         'apikey' : user.apiKey
     }}).then(res => res.status === 200 ? res.json() : null)
