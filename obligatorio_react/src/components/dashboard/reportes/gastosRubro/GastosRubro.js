@@ -29,7 +29,7 @@ class GastosRubro extends Component{
         rubros.forEach( e => {
             gastoPorRubro = [...gastoPorRubro, gastos.filter(gasto => {
                 let aux = e.id == gasto.rubro;
-                if(aux && !rubs.includes(e.id)){
+                if(aux && !rubs.some(r => r.id == e.id)){
                    rubs.push({'id':e.id, 'nombre':e.nombre});
                 }
                 if(aux){

@@ -76,7 +76,7 @@ class Reportes extends Component{
 
                 <General/>
                 <GastosRubro gastos={gastos} rubros={rubros}/>
-                <ComprasRubro/>          
+                <ComprasRubro gastos={gastos} rubros={rubros}/>          
             </div>
         );
     }

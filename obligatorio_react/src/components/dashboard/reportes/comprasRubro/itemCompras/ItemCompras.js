@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import 'bootstrap-css-only';
 
 class ItemsComprasRubro extends Component{
     render(){
+        const {compras, nombre} = this.props;
         return (
-            <div className='card' style={{border : 'solid' }}>
-                <h1>Soy un item de Compra por rubro</h1>
-            </div>
+            <Fragment>
+            <tr>
+                <th scope="row">{nombre}</th>
+                <td>{compras}</td>
+            </tr>
+            </Fragment>
         );
     }
 }
