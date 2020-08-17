@@ -41,22 +41,29 @@ class Dashboard extends Component {
   
   render() {
     const {gastos} = this.state; 
+    const { match } = this.props;
+    const { url, path } = match;
     return (
       <div className="card text-center">
         <div className="card-body">
           <div className= "card">
             <div clss="card-body">                
               <AltaGasto actualizarGastos={this.obtenerYFiltrarGastos}/>
-            </div>
-            <div clss="card-body">  
-              <h6>cositas</h6>        
+            </div>            
+          </div>
+          <hr/>
+          <div className= "card">
+            <div clss="card-body">    
               <ListadoGastos gastos={gastos} actualizarGastos={this.obtenerYFiltrarGastos}/>
             </div>
-          </div>          
+          </div>  
+          <hr/>
+          <div className= "card">
+            <div clss="card-body">    
+              <Reportes url={url} path={path}/>
+            </div>
+          </div>                
         </div>        
-        <div className="card-footer">
-          <Reportes/>
-        </div>
       </div>     
     );
   }

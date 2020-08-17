@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import 'bootstrap-css-only';
-
 const headersTabla = ['Cantidad', 'Total'];
 class General extends Component{
 
@@ -33,18 +32,20 @@ class General extends Component{
     render(){   
         const {gastos} = this.props; 
         return (
-            <div className="card">    
-            <table className="table">
-              <thead className="thead-dark">
-                <tr>
-                  {headersTabla.map(e => <th scope="col">{e}</th>)}            
-                </tr>
-              </thead>
-              <tbody>    
-                {this.buildItems(gastos)}    
-              </tbody>
-            </table>        
-          </div>
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+              <div className="card">    
+                <table className="table">
+                  <thead className="thead-dark">
+                    <tr>
+                      {headersTabla.map(e => <th scope="col">{e}</th>)}            
+                    </tr>
+                  </thead>
+                  <tbody>    
+                    {this.buildItems(gastos)}    
+                  </tbody>
+                </table>        
+              </div>
+            </div>            
         );
     }
 }

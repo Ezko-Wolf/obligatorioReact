@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'bootstrap-css-only';
 import {obtenerRubros, altaGasto} from '../../../services/Api';
 
 
@@ -72,7 +73,32 @@ class AltaGasto extends Component{
     render(){
         let {options} = this.state; 
         return (
-            <div style={{border : 'solid' }}>
+            <div style={{border : 'solid' }}> 
+                <form>
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
+                            <label for="name">Gasto</label>
+                            <input type="text" className="form-control" id="name" />
+                        </div>
+                        <div className="form-group col-md-6">
+                            <label for="monto">Monto</label>
+                            <input type="number" className="form-control" id="monto"/>
+                        </div>
+                    </div>                     
+                    <div className="form-group">
+                        <label for="inputState">State</label>
+                        <select className="form-control" value = {this.state.idRubro} onChange={this.handleChange} id='listadoRubros'>
+                            <option>Seleccione rubro</option>
+                            {options}
+                        </select>
+                        <br/>
+                        <button type="submit" className="btn form-control" style={{backgroundColor:'#343a40', color:'white'}} onClick={this.handleSend}>Crear</button>
+                    </div>  
+                        
+                    </form>
+            </div>
+
+            /* <div style={{border : 'solid' }}>
                 <label name = 'name'>Gasto</label>
                 <input type='text' name='name' id='name'/>
                 <br/>
@@ -85,7 +111,7 @@ class AltaGasto extends Component{
                 </select>
                 <br/>
                 <button className="btn border" onClick={this.handleSend}>Crear</button>
-            </div>
+            </div> */
         );
     }
 }

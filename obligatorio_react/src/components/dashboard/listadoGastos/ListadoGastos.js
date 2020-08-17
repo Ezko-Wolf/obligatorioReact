@@ -19,7 +19,7 @@ class ListadoGastos extends Component {
   
   render() {
     return (
-      <div className="card">    
+      <div className="card" style={{border : 'solid' }}>    
         <table class="table">
           <thead class="thead-dark">
             <tr>

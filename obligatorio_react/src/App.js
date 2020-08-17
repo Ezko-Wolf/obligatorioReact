@@ -12,14 +12,7 @@ class App extends Component {
   constructor (props){
     super(props);
     this.state = {
-      userData : null
-      // userData : {        
-      //     "usuario": "Gaston24",
-      //     "password": "tongas",
-      //     "codigo": 200,
-      //     "apiKey": "9f4251b00f6905fc25f4fecce0cc68b3",
-      //     "id": "77"
-      // }      
+      userData : null  
     };
   }
 
@@ -47,14 +40,9 @@ class App extends Component {
         <div className="App">
           <Header userName = { userData && userData.usuario ? userData.usuario : ''}/>
           <main>
-            <Route exact path='/' render = { (props) => {
-                return <Login handleLogin={this.handleLogin} {...props}/>
-              } }/>
+            <Route exact path='/' render = { (props) => <Login handleLogin={this.handleLogin} {...props}/>}/>
             <Route path='/registro' component = {Registro}/>
             <Route path='/dashboard' component = {Dashboard}/>
-            {/* <Registro/>
-            <br/><br/><br/>
-            {userData === null ? <Login handleLogin={this.handleLogin}/> : <Dashboard/>} */}
           </main>
        </div>
       </Router>
