@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap-css-only';
 import ItemsComprasRubro from './itemCompras'; 
+import Grafica from './grafica';
 
 const headersTabla = ['Rubro', 'Compras'];
 /**
@@ -14,14 +15,19 @@ class ComprasRubro extends Component{
         this.buildItems = this.buildItems.bind(this); 
     }
 
-    buildItems(rubros, totales){
-        return totales.map( e => {
+    buildItems(rubros, totales, tipo){
+      switch (tipo) {
+        case 0:
+          return totales.map( e => {
             let auxName = rubros.find(f => f.id == e.id);
-            return <ItemsComprasRubro compras={e.total} nombre={auxName.nombre} />
-        });
+            return <ItemsComprasRubro key={auxName.nombre} compras={e.total} nombre={auxName.nombre} />      
+        }); 
+        case 1:
+          return <Grafica montos={totales} nombres={rubros}/> 
+      }        
     }
 
-    processData(gastos, rubros){
+    processData(gastos, rubros, tipo = 0){
         let gastoPorRubro = [];
         let rubs = [];
         let totalPorRubro =[];
@@ -49,7 +55,7 @@ class ComprasRubro extends Component{
             totalPorRubro.push({'id': auxIdGasto, 'total': totalAux});
         });
 
-        return this.buildItems(rubs, totalPorRubro);
+        return this.buildItems(rubs, totalPorRubro, tipo);
     }
 
 
@@ -66,7 +72,14 @@ class ComprasRubro extends Component{
               <tbody>                
                 {this.processData(gastos, rubros)}
               </tbody>
-            </table>        
+            </table>  
+            <div className='card-body row justify-content-center'>
+              <div className='col-5'>
+                <div className='row justify-content-center'>
+                  {this.processData(gastos, rubros, 1)}
+                </div>                    
+              </div>                  
+            </div>          
           </div>
         );
     }

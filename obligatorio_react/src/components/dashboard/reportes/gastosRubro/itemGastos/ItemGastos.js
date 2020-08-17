@@ -7,11 +7,11 @@ class ItemGastosRubro extends Component{
         const {monto, nombre} = this.props;
         return (
             <Fragment>
-            <tr>
-                <th scope="row">{nombre}</th>
-                <td>{monto}</td>
-            </tr>
-        </Fragment>
+                <tr>
+                    <th scope="row">{nombre}</th>
+                    <td>{monto}</td>
+                </tr>
+            </Fragment>
         );
     }
 }

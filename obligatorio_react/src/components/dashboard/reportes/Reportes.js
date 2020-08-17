@@ -65,7 +65,7 @@ class Reportes extends Component{
         const { url, path } = this.props;        
         return (
             <Router> 
-                <nav class="navbar fixed-bottom navbar-dark bg-dark">
+                <nav className="navbar fixed-bottom navbar-dark bg-dark">
                     <Link className="navbar-brand btn" style={style} to={`${url}/general`}>Reporte General</Link>
                     <Link className="navbar-brand btn" style={style} to={`${url}/gastosRubro`}>Gastos por Rubro</Link>
                     <Link className="navbar-brand btn" style={style} to={`${url}/comprasRubro`}>Compras por Rubro</Link>

@@ -30,7 +30,7 @@ class AltaGasto extends Component{
             }else{          
                 rubs.rubros.forEach(e => {                         
                     this.setState({
-                        options : [...this.state.options, <option value= {e.id} id= {e.id} >{e.nombre}</option>]
+                        options : [...this.state.options, <option value= {e.id} id= {e.id} key={e.id} >{e.nombre}</option>]
                     }) 
                 });
             }          
@@ -43,15 +43,15 @@ class AltaGasto extends Component{
         });        
     }
 
-    handleSend(){
+    handleSend(e){
         //deberia actualizar el state con changes? o puedo obtenerlo directo con js.
-        //deberia actualizar el state con el name y el monto o no es necesario y puedo pasarlo a la funcion de la api que registra el gasto?        
+        //deberia actualizar el state con el name y el monto o no es necesario y puedo pasarlo a la funcion de la api que registra el gasto?  
+        e.preventDefault();     
         let dataGasto = {
             nombre: document.getElementById('name').value,
             monto: document.getElementById('monto').value,
             idRubro: this.state.idRubro
         }; 
-        
         //Agregar validaciones sobre todo la del rubro
         if(dataGasto.nombre == '' || dataGasto.monto == '' || dataGasto.idRubro == ''){
             alert('Tenes que completar los campos');
@@ -77,22 +77,22 @@ class AltaGasto extends Component{
                 <form>
                     <div className="form-row">
                         <div className="form-group col-md-6">
-                            <label for="name">Gasto</label>
-                            <input type="text" className="form-control" id="name" />
+                            <label>Gasto</label>
+                            <input type="text" className="form-control" id="name" name="name" />
                         </div>
                         <div className="form-group col-md-6">
-                            <label for="monto">Monto</label>
-                            <input type="number" className="form-control" id="monto"/>
+                            <label >Monto</label>
+                            <input type="number" className="form-control" id="monto" name="monto"/>
                         </div>
                     </div>                     
                     <div className="form-group">
-                        <label for="inputState">State</label>
-                        <select className="form-control" value = {this.state.idRubro} onChange={this.handleChange} id='listadoRubros'>
+                        <label>Rubro</label>
+                        <select className="form-control" value = {this.state.idRubro} onChange={this.handleChange} id="listadoRubros">
                             <option>Seleccione rubro</option>
                             {options}
                         </select>
                         <br/>
-                        <button type="submit" className="btn form-control" style={{backgroundColor:'#343a40', color:'white'}} onClick={this.handleSend}>Crear</button>
+                        <button type="submit" className="btn form-control" style={{backgroundColor:"#343a40", color:"white"}} onClick={this.handleSend}>Crear</button>
                     </div>  
                         
                     </form>

@@ -41,7 +41,7 @@ class ItemGasto extends Component{
         let {gasto} = this.props;
         return (
             <Fragment>
-                <tr>
+                <tr key={gasto.id}>
                     <th scope="row">{gasto.id}</th>
                     <td>{gasto.nombre}</td>
                     <td>{gasto.monto}</td>

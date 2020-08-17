@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap-css-only';
 import ItemGastosRubro from './itemGastos';
+import Grafica from './grafica';
 
 const headersTabla = ['Rubro', 'Total'];
 class GastosRubro extends Component{
@@ -10,14 +11,19 @@ class GastosRubro extends Component{
         this.buildItems = this.buildItems.bind(this); 
     }
 
-    buildItems(rubros, totales){
-        return totales.map( e => {
+    buildItems(rubros, totales, tipo){
+      switch (tipo) {
+        case 0:
+          return totales.map( e => {
             let auxName = rubros.find(f => f.id == e.id);
-            return <ItemGastosRubro monto={e.total} nombre={auxName.nombre} />
-        });
+            return <ItemGastosRubro key={auxName.nombre} monto={e.total} nombre={auxName.nombre} />      
+        }); 
+        case 1:
+          return <Grafica montos={totales} nombres={rubros}/> 
+      }         
     }
 
-    processData(gastos, rubros){
+    processData(gastos, rubros, tipo = 0){
         let gastoPorRubro = [];
         let rubs = [];
         let totalPorRubro =[];
@@ -45,7 +51,7 @@ class GastosRubro extends Component{
             totalPorRubro.push({'id': auxIdGasto, 'total': totalAux});
         });
 
-        return this.buildItems(rubs, totalPorRubro);
+      return this.buildItems(rubs, totalPorRubro, tipo);        
     }
 
     render(){   
@@ -55,13 +61,20 @@ class GastosRubro extends Component{
             <table className="table">
               <thead className="thead-dark">
                 <tr>
-                  {headersTabla.map(e => <th scope="col">{e}</th>)}            
+                  {headersTabla.map(e => <th key={e} scope="col">{e}</th>)}            
                 </tr>
               </thead>
               <tbody>                
-                {this.processData(gastos, rubros)}
+                {this.processData(gastos, rubros, 0)}
               </tbody>
-            </table>        
+            </table>   
+            <div className='card-body row justify-content-center'>
+              <div className='col-5'>
+                <div className='row justify-content-center'>
+                  {this.processData(gastos, rubros, 1)}
+                </div>                    
+              </div>                  
+            </div>     
           </div>
         );
     }

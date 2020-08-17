@@ -14,16 +14,16 @@ class ListadoGastos extends Component {
   }
 
   cargaListado(listaOrdenada){
-    return listaOrdenada.map(e => <ItemGasto actualizarGastos={this.props.actualizarGastos} gasto = {e}/>);   
+    return listaOrdenada.map(e => <ItemGasto key={e.id} actualizarGastos={this.props.actualizarGastos} gasto = {e}/>);   
   }
   
   render() {
     return (
       <div className="card" style={{border : 'solid' }}>    
-        <table class="table">
-          <thead class="thead-dark">
+        <table className="table">
+          <thead className="thead-dark">
             <tr>
-              {headersTabla.map(e => <th scope="col">{e}</th>)}            
+              {headersTabla.map(e => <th key={e} scope="col">{e}</th>)}            
             </tr>
           </thead>
           <tbody>

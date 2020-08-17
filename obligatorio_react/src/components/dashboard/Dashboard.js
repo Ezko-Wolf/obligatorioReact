@@ -26,8 +26,13 @@ class Dashboard extends Component {
             alert('Servicio no disponible momentaneamente.');
         }else{  
           let listaOrdenada = gastos.gastos; 
+          console.info(gastos.gastos)
           listaOrdenada.sort((a, b) => parseInt(a.id) - parseInt(b.id));
-          listaOrdenada = listaOrdenada.slice(listaOrdenada.length - 10);
+          if(listaOrdenada.length > 10){
+            listaOrdenada = listaOrdenada.slice(listaOrdenada.length - 10);
+          }
+          
+          console.info(listaOrdenada)
           this.setState({
             gastos: listaOrdenada
           });  

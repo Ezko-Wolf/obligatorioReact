@@ -1,4 +1,4 @@
-const URI = 'https://xpense.develotion.com';
+const URI = 'http://xpense.develotion.com';
 
 const login = userData => {
 
@@ -62,11 +62,11 @@ const altaGasto = (dataGasto, user) => {
         "idUsuario": user.id,
         "idRubro": dataGasto.idRubro
     };
-
     return fetch(`${URI}/gastos.php`,{
     method : 'POST',
     body: JSON.stringify(data),
     headers:{
+        'Cache-control': 'no-cache',
         'Content-Type': 'application/json',
         'apikey' : user.apiKey
     }}).then(res => res.status === 200 ? res.json() : null)
@@ -82,6 +82,7 @@ const obtenerGastos = user => {
     return fetch(`${URI}/gastos.php?id=${user.id}`,{
     method : 'GET',
     headers:{
+        'Cache-control': 'no-cache',
         'Content-Type': 'application/json',
         'apikey' : user.apiKey
     }}).then(res => res.status === 200 ? res.json() : null)
