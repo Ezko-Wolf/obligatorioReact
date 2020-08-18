@@ -40,8 +40,7 @@ const registro = userData => {
     
 };
 
-const obtenerRubros = user => { 
-    console.info('llamo al get');   
+const obtenerRubros = user => {  
     return fetch(`${URI}/rubros.php`,{
     method : 'GET',
     headers:{

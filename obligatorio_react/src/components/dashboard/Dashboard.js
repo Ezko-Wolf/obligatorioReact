@@ -26,13 +26,11 @@ class Dashboard extends Component {
             alert('Servicio no disponible momentaneamente.');
         }else{  
           let listaOrdenada = gastos.gastos; 
-          console.info(gastos.gastos)
           listaOrdenada.sort((a, b) => parseInt(a.id) - parseInt(b.id));
           if(listaOrdenada.length > 10){
             listaOrdenada = listaOrdenada.slice(listaOrdenada.length - 10);
           }
           
-          console.info(listaOrdenada)
           this.setState({
             gastos: listaOrdenada
           });  
@@ -46,8 +44,6 @@ class Dashboard extends Component {
   
   render() {
     const {gastos} = this.state; 
-    const { match } = this.props;
-    const { url, path } = match;
     return (
       <div className="card text-center">
         <div className="card-body">
@@ -65,7 +61,7 @@ class Dashboard extends Component {
           <hr/>
           <div className= "card">
             <div clss="card-body">    
-              <Reportes url={url} path={path}/>
+              <Reportes/>
             </div>
           </div>                
         </div>        

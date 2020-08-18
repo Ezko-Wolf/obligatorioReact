@@ -30,7 +30,7 @@ class Login extends Component {
             alert('Servicio no disponible momentaneamente.');
           }else{            
             this.props.handleLogin(usr);
-            this.props.history.replace('/dashboard');
+            this.props.history.replace('/dashboard'); 
           }          
         }
       );      
@@ -64,7 +64,7 @@ class Login extends Component {
             <br />
             <input type="password" name="pass" id="inputPass" value = {pass} onChange = {this.handleChange} className="form-control"/>
             <br />
-            <Link to='/registro' >Registro</Link>
+            <Link to='/registro' style={{marginRight: '50px'}} >Registro</Link>
             <button className="btn btn-primary" onClick={this.handleSend}>Ingresar</button>
           </form>
         </section>

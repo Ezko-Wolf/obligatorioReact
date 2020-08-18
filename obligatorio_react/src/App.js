@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import './App.css';
 import 'bootstrap-css-only';
 import Header from './components/header';
 import Login from './components/login';
 import Dashboard from './components/dashboard';
 import Registro from './components/registro';
-import { registro, login } from './services/Api';
+import PrivateRoute from './components/privateRoutes';
 
 class App extends Component {
   constructor (props){
     super(props);
     this.state = {
-      userData : null  
+      userData : null,
+      renderUser: false  
     };
   }
 
@@ -27,22 +28,37 @@ class App extends Component {
 
   handleLogin = user => {
     this.setState({
-      userData: user
+      userData: user,
+      renderUser:true
     }, () => {
-      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('user', JSON.stringify(user));
+    });
+  };
+
+  handleLogOut = () => {
+    this.setState({
+      renderUser:false
     });
   };
 
   render() {
-    const {userData} = this.state;
+    const {userData, renderUser} = this.state;
     return (
       <Router>
         <div className="App">
-          <Header userName = { userData && userData.usuario ? userData.usuario : ''}/>
+            <Route path='/' render = { (props) => <Header user={userData && userData.usuario} renderUser={renderUser} handleLogOutApp={this.handleLogOut} {...props}/>}/>
           <main>
+            
             <Route exact path='/' render = { (props) => <Login handleLogin={this.handleLogin} {...props}/>}/>
-            <Route path='/registro' component = {Registro}/>
-            <Route exact path='/dashboard' component = {Dashboard}/>
+            {/* <PrivateRoute exact path='/'>
+              <Login handleLogin={this.handleLogin}/>
+            </PrivateRoute>  */}
+            <PrivateRoute exact path='/registro'>
+              <Registro user={userData}/>
+            </PrivateRoute> 
+            <PrivateRoute exact path='/dashboard'>
+              <Dashboard user={userData}/>
+            </PrivateRoute>               
           </main>
        </div>
       </Router>

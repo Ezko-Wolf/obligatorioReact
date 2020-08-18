@@ -118,20 +118,7 @@ class Reportes extends Component{
                         <button className="btn btn-primary" style={{backgroundColor:"#343a40", color:"white"}} onClick={this.cerrarModal} >Cerrar</button>
                     </Modal.Footer>
                 </Modal>
-            </div>
-            
-            // <Router> 
-            //     <nav className="navbar fixed-bottom navbar-dark bg-dark">                    
-            //         <Link className="navbar-brand btn" style={style} to={`${url}/general`}>Reporte General</Link>
-            //         <Link className="navbar-brand btn" style={style} to={`${url}/gastosRubro`}>Gastos por Rubro</Link>
-            //         <Link className="navbar-brand btn" style={style} to={`${url}/comprasRubro`}>Compras por Rubro</Link>
-            //     </nav>                
-            //     <Switch>
-            //         <Route path={`${path}/general`} render = { (props) => <General gastos={gastos} {...props}/>}/>
-            //         <Route path={`${path}/gastosRubro`} render = { (props) => <GastosRubro gastos={gastos} rubros={rubros} {...props}/>}/>
-            //         <Route path={`${path}/comprasRubro`} render = { (props) => <ComprasRubro gastos={gastos} rubros={rubros} {...props}/>}/>
-            //     </Switch>
-            // </Router>    
+            </div>   
         );
     }
 }
