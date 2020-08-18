@@ -11,6 +11,9 @@ class General extends Component{
     constructor(props){
       super(props);
       this.buildItems = this.buildItems.bind(this); 
+      this.state={
+        open: true
+      };
     }
 
     buildItems(gastos, type = 0){        
@@ -39,28 +42,27 @@ class General extends Component{
 
     render(){   
         const {gastos} = this.props; 
+        let closeModal = () => this.setState({ open: false })
         return (
-            // <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-              <div className="card">    
-                <table className="table">
-                  <thead className="thead-dark">
-                    <tr>
-                      {headersTabla.map(e => <th scope="col">{e}</th>)}            
-                    </tr>
-                  </thead>
-                  <tbody>    
-                    {this.buildItems(gastos, 0)}    
-                  </tbody>
-                </table> 
-                <div className='card-body row justify-content-center'>
-                  <div className='col-5'>
-                    <div className='row justify-content-center'>
-                      {this.buildItems(gastos, 1)} 
-                    </div>                    
-                  </div>                  
-                </div>                      
-              </div>
-            //  </div>            
+          <div className="card">    
+            <table className="table">
+              <thead className="thead-dark">
+                <tr>
+                  {headersTabla.map(e => <th scope="col">{e}</th>)}            
+                </tr>
+              </thead>
+              <tbody>    
+                {this.buildItems(gastos, 0)}    
+              </tbody>
+            </table> 
+            <div className='card-body row justify-content-center'>
+              <div className='col-5'>
+                <div className='row justify-content-center'>
+                  {this.buildItems(gastos, 1)} 
+                </div>                    
+              </div>                  
+            </div>                      
+          </div>          
         );
     }
 }

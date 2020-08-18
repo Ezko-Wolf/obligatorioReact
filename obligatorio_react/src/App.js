@@ -42,7 +42,7 @@ class App extends Component {
           <main>
             <Route exact path='/' render = { (props) => <Login handleLogin={this.handleLogin} {...props}/>}/>
             <Route path='/registro' component = {Registro}/>
-            <Route path='/dashboard' component = {Dashboard}/>
+            <Route exact path='/dashboard' component = {Dashboard}/>
           </main>
        </div>
       </Router>

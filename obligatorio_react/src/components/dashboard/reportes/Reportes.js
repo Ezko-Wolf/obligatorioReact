@@ -5,6 +5,7 @@ import GastosRubro from './gastosRubro';
 import ComprasRubro from './comprasRubro';
 import {obtenerGastos , obtenerRubros} from '../../../services/Api';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {Modal} from 'react-bootstrap';
 
 const style = {borderColor: 'white'};
 
@@ -13,11 +14,15 @@ class Reportes extends Component{
         super(props);
         this.state = {
             gastos: [],
-            rubros: []
+            rubros: [],
+            visible: false,
+            componenteAMostrar: ''
         };
 
         this.cargarGastos = this.cargarGastos.bind(this);
         this.cargarRubros = this.cargarRubros.bind(this);
+        this.mostrarModal = this.mostrarModal.bind(this);
+        this.cerrarModal = this.cerrarModal.bind(this);        
     }
 
     cargarGastos(user){
@@ -53,6 +58,42 @@ class Reportes extends Component{
         });
     }
 
+    mostrarModal(e){
+        let id = e.target.id;
+        setTimeout(() => {            
+            const {gastos, rubros} = this.state;            
+            switch (id) {
+                case 'general':
+                    this.setState({
+                        componenteAMostrar: <General gastos={gastos}/>,
+                        visible: true
+                    });
+                break;
+            
+                case 'gastosPorRubro':
+                    this.setState({
+                        componenteAMostrar: <GastosRubro gastos={gastos} rubros={rubros}/>,
+                        visible: true
+                    });
+                break;
+                case 'comprasPorRubro':
+                    this.setState({
+                        componenteAMostrar: <ComprasRubro gastos={gastos} rubros={rubros}/>,
+                        visible: true
+                    });
+                break;
+            }
+        },1000);
+        
+    }
+
+    cerrarModal(){ 
+        this.setState({
+            componenteAMostrar: '',
+            visible: false
+        });        
+    }
+
     componentDidMount(){        
         let user = JSON.parse(localStorage.getItem('user'));
         this.cargarGastos(user);
@@ -61,25 +102,36 @@ class Reportes extends Component{
 
 
     render(){
-        const {gastos, rubros} = this.state;
-        const { url, path } = this.props;        
-        return (
-            <Router> 
-                <nav className="navbar fixed-bottom navbar-dark bg-dark">
-                    <Link className="navbar-brand btn" style={style} to={`${url}/general`}>Reporte General</Link>
-                    <Link className="navbar-brand btn" style={style} to={`${url}/gastosRubro`}>Gastos por Rubro</Link>
-                    <Link className="navbar-brand btn" style={style} to={`${url}/comprasRubro`}>Compras por Rubro</Link>
-                </nav>                
-                <Switch>
-                    <Route path={`${path}/general`} render = { (props) => <General gastos={gastos} {...props}/>}/>
-                    <Route path={`${path}/gastosRubro`} render = { (props) => <GastosRubro gastos={gastos} rubros={rubros} {...props}/>}/>
-                    <Route path={`${path}/comprasRubro`} render = { (props) => <ComprasRubro gastos={gastos} rubros={rubros} {...props}/>}/>
-                </Switch>
-            </Router>
-            //     <General />
-            //     <GastosRubro gastos={gastos} rubros={rubros}/>
-            //     <ComprasRubro gastos={gastos} rubros={rubros}/>          
-            // </div>           
+        const {visible, componenteAMostrar} = this.state;
+        return (   
+            <div>
+                <nav className="navbar fixed-bottom navbar-dark bg-dark">                    
+                    <button className="navbar-brand btn" id='general' onClick={this.mostrarModal} style={style}>Reporte General</button>
+                    <button className="navbar-brand btn" id='gastosPorRubro' onClick={this.mostrarModal} style={style}>Gastos por Rubro</button>
+                    <button className="navbar-brand btn" id='comprasPorRubro' onClick={this.mostrarModal} style={style}>Compras por Rubro</button>
+                 </nav>                 
+                <Modal show={visible} size="lg" centered>
+                    <Modal.Body>
+                        {componenteAMostrar}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button className="btn btn-primary" style={{backgroundColor:"#343a40", color:"white"}} onClick={this.cerrarModal} >Cerrar</button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
+            
+            // <Router> 
+            //     <nav className="navbar fixed-bottom navbar-dark bg-dark">                    
+            //         <Link className="navbar-brand btn" style={style} to={`${url}/general`}>Reporte General</Link>
+            //         <Link className="navbar-brand btn" style={style} to={`${url}/gastosRubro`}>Gastos por Rubro</Link>
+            //         <Link className="navbar-brand btn" style={style} to={`${url}/comprasRubro`}>Compras por Rubro</Link>
+            //     </nav>                
+            //     <Switch>
+            //         <Route path={`${path}/general`} render = { (props) => <General gastos={gastos} {...props}/>}/>
+            //         <Route path={`${path}/gastosRubro`} render = { (props) => <GastosRubro gastos={gastos} rubros={rubros} {...props}/>}/>
+            //         <Route path={`${path}/comprasRubro`} render = { (props) => <ComprasRubro gastos={gastos} rubros={rubros} {...props}/>}/>
+            //     </Switch>
+            // </Router>    
         );
     }
 }
